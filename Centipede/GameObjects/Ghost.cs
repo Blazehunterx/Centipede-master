@@ -15,11 +15,18 @@ namespace Pacman {
 		public int Speed = 6;
 		public Ghost(String assetName, Vector2 position, Vector2 velocity) : base(assetName) {
 			this.position = position;
-			this.velocity = new Vector2(GameEnvironment.Random.Next(0,6));
+			this.velocity = velocity;
 		}
 
-		internal bool Overlaps(Player thePlayer) {
-			return true;
+		public override void Update(GameTime gameTime) {
+			base.Update(gameTime);
+			position += velocity;
+			if ((position.X > GameEnvironment.Screen.X || (position.X < 0))) {
+				velocity.X = -velocity.X;
+			}
+			if ((position.Y > GameEnvironment.Screen.Y || (position.Y < 0))) {
+				velocity.Y = -velocity.Y;
+			}
 			
 		}
 	}

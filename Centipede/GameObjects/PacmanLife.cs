@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameObjects {
     class PacmanLife : TextGameObject {
-        public int lives;
+        private int lives;
         
         public int Lives {
             get { return lives; }

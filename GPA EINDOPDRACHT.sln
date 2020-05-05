@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centipede", "Centipede\Centipede.csproj", "{6FAC7E83-C68E-45FA-B629-BE82C8936C9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPA EINDOPDRACHT", "Centipede\GPA EINDOPDRACHT.csproj", "{6FAC7E83-C68E-45FA-B629-BE82C8936C9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

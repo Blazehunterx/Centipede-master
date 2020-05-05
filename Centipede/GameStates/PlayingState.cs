@@ -10,26 +10,27 @@ namespace Pacman.GameStates {
         GameObjectList ghosts;
         PacmanLife thepacmanLife;
         Player thePlayer;
-        Item theItem;
-       
+        GameObjectList items;
+
         GameObjectList coins;
         Score theScore;
 
         int fontSize = 20;
-        
+        bool itemHasBeenPickedUp = false;
         bool Attack = false;
-        static int startXPosition = GameEnvironment.Random.Next(-200,1200),
-               startYPosition = GameEnvironment.Random.Next(-200, 0),
+        static int startXPosition = GameEnvironment.Random.Next(0, 1080),
+               startYPosition = GameEnvironment.Random.Next(0,920),
                nGhostsPerLevel = 10,
-               ghostWidth = 100,
-               ghostHeight = 100;
-        int nGhostInLevel = nGhostsPerLevel + 2;
+               ghostWidth = GameEnvironment.Random.Next(10, 80),
+               ghostHeight = GameEnvironment.Random.Next(15, 70);
+        
         float timeSinceItemPickup = 0f;
         float timeSinceHitByEnemy = 0f;
-        bool hit = true;
+        bool canPlayerBeDamaged = true;
+        
 
         public PlayingState() {
-  
+
             this.Add(new SpriteGameObject("BackGround2.0"));
 
             ghosts = new GameObjectList();
@@ -47,8 +48,10 @@ namespace Pacman.GameStates {
             thePlayer = new Player();
             this.Add(thePlayer);
 
-            theItem = new Item();
-            this.Add(theItem);
+            items = new GameObjectList();
+            Items();
+            this.Add(items);
+            
 
             theScore = new Score("GameFont");
             Add(theScore);
@@ -57,89 +60,114 @@ namespace Pacman.GameStates {
             Add(thepacmanLife);
             Reset();
         }
+        public void Items() {
+            String[] assetName = { "pointo" };
+            int nItemPerLevel = 5;
+            for (int iItemType = 0; iItemType < assetName.Length; iItemType++)
+                for (int iItem = 0; iItem < nItemPerLevel; iItem++)
+                    items.Add(new Item(assetName[iItemType]));
+        }
+        
         public void wave() {
+             int getRandomNotNullValue(int min, int max) {
+                Random random = new Random();
+                int value = random.Next(min, max);
+                while (value == 0) {
+                    value = random.Next(min, max);
+                }
+                return value;
+                }
             String[] assetNames = { "Red1", "BlueGhost", "YellowGhost" };
 
             for (int iGhostType = 0; iGhostType < assetNames.Length; iGhostType++)
                 for (int IGhost = 0; IGhost < nGhostsPerLevel; IGhost++)
                     ghosts.Add(new Ghost(assetNames[iGhostType],
                         new Vector2(startXPosition + IGhost * ghostWidth, startYPosition + iGhostType * ghostHeight),
-                        new Vector2((((iGhostType % 2) * 20 - 10)) * 80, 0)));
+                        new Vector2(getRandomNotNullValue(-10, 10), getRandomNotNullValue(-10, 10))));
+
         }
+                        
+        
         public override void Reset() {
-            thepacmanLife.lives = 3;
+            thepacmanLife.Lives = 3;
             wave();
         }
 
 
         public override void Update(GameTime gameTime) {
 
-            timeSinceItemPickup += (float)gameTime.ElapsedGameTime.TotalSeconds;
+           
             timeSinceHitByEnemy += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
+            if (canPlayerBeDamaged == false) {
+                if (timeSinceHitByEnemy > 5f) {
+                    canPlayerBeDamaged = true;
+                    
+                }
+            }
+            
             foreach (Ghost ghost in ghosts.Children) {
 
-                ghost.velocity = thePlayer.position - ghost.position;
-                if (ghost.velocity.Length() > 0) {
-                    ghost.velocity = ghost.velocity / ghost.velocity.Length() * ghost.Speed;
-                }
                 bool bCollide = (ghost as SpriteGameObject).CollidesWith(thePlayer as SpriteGameObject);
-                if (bCollide && hit) {
+                if (bCollide && canPlayerBeDamaged) {
 
                     if (Attack) {
                         ghost.Visible = false;
                         nGhostsPerLevel--;
-                        thepacmanLife.lives++;
+                        thepacmanLife.Lives++;
 
 
                     } else {
 
-                        thepacmanLife.lives--;
-                        hit = false;
-                        
-                        if (thepacmanLife.lives == 0) {
+                        thepacmanLife.Lives--;
+                        canPlayerBeDamaged = false;
+                        timeSinceHitByEnemy = 0f;
+                        if (thepacmanLife.Lives == 0) {
                             GameEnvironment.GameStateManager.SwitchTo("gameOverState");
                         }
                     }
-                    if (nGhostsPerLevel == 0) {
+                    if (nGhostsPerLevel == -5) {
                         GameEnvironment.GameStateManager.SwitchTo("winState");
-                       
+
                     }
-                    if(hit == false) {
-                        if (timeSinceHitByEnemy > 2f) {
-                            hit = true;
-                        }
-                    }
-                    
 
                 }
             }
             foreach (Ghost ghost in ghosts.Children) {
-                bool bCollides = (theItem as SpriteGameObject).CollidesWith(thePlayer as SpriteGameObject);
-                if (bCollides) {
-
-                    if (timeSinceItemPickup > 2f) {
-                        Attack = true;
-                        theItem.Visible = false;
-                    }
-                    if (timeSinceItemPickup > 10f) {
+                foreach (Item items in items.Children) { 
+                    bool bCollides = (items as SpriteGameObject).CollidesWith(thePlayer as SpriteGameObject);
+                    if (bCollides) {
+                    itemHasBeenPickedUp = true;
+                        if (itemHasBeenPickedUp) {
+                        timeSinceItemPickup += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        }
+                    Attack = true;
+                    items.Visible = false;
+                            if (timeSinceItemPickup > 2f) {
                         Attack = false;
-                        if (ghost.Visible ==false) {
-                        if (timeSinceItemPickup > 10f) {
-                            theItem.Visible = true;
-                        }                          
+                        items.Visible = true;
+                            timeSinceItemPickup = 0f;
+                            }
+                       
+                            
+                            
+                        
+                    
                     }
                 }
                 foreach (Coin coin in coins.Children) {
-                    bool bCollid = (coin as SpriteGameObject).CollidesWith(thePlayer as SpriteGameObject);
-                    if (bCollid) {
-                        theScore.Points++;
-                        coin.Visible = false;
-                    }
+                        bool bCollid = (coin as SpriteGameObject).CollidesWith(thePlayer as SpriteGameObject);
+                        if (bCollid) {
+                            theScore.Points++;
+                            coin.Visible = false;
+                        }
                 }
-                base.Update(gameTime);
+                    
+                
             }
+            base.Update(gameTime);
         }
     }
 }
+
+

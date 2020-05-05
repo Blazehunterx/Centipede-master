@@ -50,8 +50,12 @@ namespace Pacman {
 		public override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
-			position.X = MathHelper.Clamp(position.X, 0, GameEnvironment.Screen.X);
-			position.Y = MathHelper.Clamp(position.Y, 0, GameEnvironment.Screen.Y);
+			if ((position.X > GameEnvironment.Screen.X  || (position.X < 0))) {
+				position.X -= velocity.X;
+			}
+			if ((position.Y > GameEnvironment.Screen.Y  || (position.Y < 0))) {
+				position.Y -= velocity.Y;
+			}
 		}
 	}
 }

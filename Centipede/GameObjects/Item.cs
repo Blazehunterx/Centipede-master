@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace Pacman {
     class Item : SpriteGameObject {
        
-        public Item() : base("pointo") {
+        public Item(string assetName) : base(assetName) {
             position.X = GameEnvironment.Random.Next(0, 1080);
             position.Y = GameEnvironment.Random.Next(0, 920);
         }
