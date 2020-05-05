@@ -89,13 +89,14 @@ namespace Pacman.GameStates {
                         
         
         public override void Reset() {
-            thepacmanLife.Lives = 3;
+            int aantalLives = 3;
+            thepacmanLife.Lives = aantalLives;
             wave();
         }
 
 
         public override void Update(GameTime gameTime) {
-
+            int eatGhostScore = 10;
            
             timeSinceHitByEnemy += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -114,7 +115,7 @@ namespace Pacman.GameStates {
                     if (Attack) {
                         ghost.Visible = false;
                         nGhostsPerLevel--;
-                        thepacmanLife.Lives++;
+                        theScore.points += eatGhostScore;
 
 
                     } else {

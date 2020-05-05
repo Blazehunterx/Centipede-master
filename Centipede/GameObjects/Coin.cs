@@ -14,8 +14,6 @@ namespace Pacman.GameObjects {
             position.Y = GameEnvironment.Random.Next(0, 980);
         }
 
-        internal bool Overlaps(Player thePlayer) {
-            return true;
-        }
+        
     }
 }

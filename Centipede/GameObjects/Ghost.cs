@@ -11,8 +11,8 @@ using Microsoft.Xna.Framework.Input;
 namespace Pacman {
 	public class Ghost : SpriteGameObject {
 
-		public SpriteGameObject Player;
-		public int Speed = 6;
+		
+		
 		public Ghost(String assetName, Vector2 position, Vector2 velocity) : base(assetName) {
 			this.position = position;
 			this.velocity = velocity;

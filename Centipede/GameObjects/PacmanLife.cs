@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Pacman.GameObjects {
     class PacmanLife : TextGameObject {
         private int lives;
-        
+        int aantalBeginLives = 3;
         public int Lives {
             get { return lives; }
             set {
@@ -22,7 +22,7 @@ namespace Pacman.GameObjects {
         public PacmanLife(string assetName) : base(assetName) {
             spriteFont = GameEnvironment.AssetManager.Content.Load<SpriteFont>(assetName);
             color = Color.White;
-            Lives = 3;
+            Lives = aantalBeginLives;
             
         }
     }
