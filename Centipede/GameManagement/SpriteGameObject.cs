@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class SpriteGameObject : GameObject
 {
-    protected SpriteSheet sprite;
-    protected Vector2 origin;
+    public  SpriteSheet sprite;
+    public Vector2 origin;
     public bool PerPixelCollisionDetection = true;
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)

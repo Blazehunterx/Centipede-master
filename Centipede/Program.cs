@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Centipede
+namespace Pacman
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -14,7 +14,7 @@ namespace Centipede
         [STAThread]
         static void Main()
         {
-            using (var game = new Centipede())
+            using (var game = new Pacman())
                 game.Run();
         }
     }

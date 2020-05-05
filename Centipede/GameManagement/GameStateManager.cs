@@ -7,7 +7,7 @@ public class GameStateManager : IGameLoopObject
     Dictionary<string, IGameLoopObject> gameStates;
     IGameLoopObject currentGameState;
 
-    public GameStateManager(string v)
+    public GameStateManager()
     {
         gameStates = new Dictionary<string, IGameLoopObject>();
         currentGameState = null;

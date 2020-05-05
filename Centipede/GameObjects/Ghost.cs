@@ -9,29 +9,31 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Pacman {
-	public class Player : SpriteGameObject {
+	public class Ghost : SpriteGameObject {
 
-		int direction = 30;
-		public Player() : base("Pacman1") {
-			this.Origin = this.Center;
+		public SpriteGameObject Player;
+		public int Speed = 40;
+		public Ghost(String assetName, Vector2 position, Vector2 velocity) : base(assetName) {
+			this.position = position;
+			this.velocity = velocity;
 		}
 
-		
 
-		public override void HandleInput(InputHelper inputHelper) {
-			base.HandleInput(inputHelper);
-
-			if (inputHelper.KeyPressed(Keys.Up)) position.Y -= direction;
-			if (inputHelper.KeyPressed(Keys.Down)) position.Y += direction;
-			if (inputHelper.KeyPressed(Keys.Left)) position.X -= direction;
-			if (inputHelper.KeyPressed(Keys.Right)) position.X += direction;
-		}
 
 		public override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
+			
+
+
 			position.X = MathHelper.Clamp(position.X, 0, GameEnvironment.Screen.X);
 			position.Y = MathHelper.Clamp(position.Y, 0, GameEnvironment.Screen.Y);
 		}
+
+		internal bool Overlaps(Player thePlayer) {
+			return true;
+			
+		}
 	}
+
 }

@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pacman;
 
 public class GameObjectList : GameObject
 {
     protected List<GameObject> children;
-   
+    
 
     public GameObjectList(int layer = 0, string id = "") : base(layer, id)
     {
         children = new List<GameObject>();
     }
-
-   
 
     public List<GameObject> Children
     {
@@ -97,5 +97,9 @@ public class GameObjectList : GameObject
         {
             obj.Reset();
         }
+    }
+
+    internal bool Overlaps(Player thePlayer) {
+        throw new NotImplementedException();
     }
 }

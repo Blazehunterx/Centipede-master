@@ -41,7 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Centipede.cs" />
+    <Compile Include="GameObjects\Coin.cs" />
+    <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="GameObjects\PacmanLife.cs" />
+    <Compile Include="GameObjects\Score.cs" />
+    <Compile Include="GameObjects\Timer.cs" />
+    <Compile Include="GameStates\StartState.cs" />
+    <Compile Include="Pacman.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />
@@ -59,7 +65,9 @@
     <Compile Include="GameManagement\SpriteGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
+    <Compile Include="GameObjects\Ghost.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameStates\GameOverState.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,18 +80,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\spr_background.png" />
-    <Content Include="Content\spr_bullet.png" />
-    <Content Include="Content\spr_mushroom.png" />
-    <Content Include="Content\spr_player.png" />
-    <Content Include="Content\spr_snakebody.png" />
-    <Content Include="Content\spr_snakehead.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
-    <None Include="Content\GameFont.spritefont" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
