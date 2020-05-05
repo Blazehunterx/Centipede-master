@@ -12,22 +12,10 @@ namespace Pacman {
 	public class Ghost : SpriteGameObject {
 
 		public SpriteGameObject Player;
-		public int Speed = 40;
+		public int Speed = 6;
 		public Ghost(String assetName, Vector2 position, Vector2 velocity) : base(assetName) {
 			this.position = position;
-			this.velocity = velocity;
-		}
-
-
-
-		public override void Update(GameTime gameTime) {
-			base.Update(gameTime);
-
-			
-
-
-			position.X = MathHelper.Clamp(position.X, 0, GameEnvironment.Screen.X);
-			position.Y = MathHelper.Clamp(position.Y, 0, GameEnvironment.Screen.Y);
+			this.velocity = new Vector2(GameEnvironment.Random.Next(0,6));
 		}
 
 		internal bool Overlaps(Player thePlayer) {

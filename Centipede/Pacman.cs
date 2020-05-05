@@ -14,6 +14,7 @@ namespace Pacman
         private PlayingState playingState;
         private GameOverState gameOverState;
         private StartState startState;
+        private WinState winState;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -31,10 +32,12 @@ namespace Pacman
             playingState = new PlayingState();
             gameOverState = new GameOverState();
             startState = new StartState();
+            winState = new WinState();
             GameStateManager.AddGameState("playingstate", playingState);
             GameStateManager.AddGameState("gameOverState", gameOverState);
-            //GameStateManager.AddGameState("stateState", startState);
-            GameStateManager.SwitchTo("playingstate");
+            GameStateManager.AddGameState("stateState", startState);
+            gameStateManager.AddGameState("winState", winState);
+            GameStateManager.SwitchTo("stateState");
         }
     }
 }

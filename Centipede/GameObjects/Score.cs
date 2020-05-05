@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Pacman.GameObjects {
     class Score : TextGameObject {
-        private int points;
+        public int points;
 
         public int Points {
             get { return points; }
             set {
                 points = value;
-                Text = points.ToString();
+                Text = "score:  " + points.ToString();
             }
         }
 

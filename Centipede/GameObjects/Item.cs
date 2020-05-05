@@ -9,16 +9,13 @@ namespace Pacman {
     class Item : SpriteGameObject {
        
         public Item() : base("pointo") {
-            position = new Vector2(GameEnvironment.Random.Next(0, 1080));
-        }
-
-        internal bool Overlaps(Player thePlayer) {
-            
-            return true;
+            position.X = GameEnvironment.Random.Next(0, 1080);
+            position.Y = GameEnvironment.Random.Next(0, 920);
         }
 
         public override void Reset() {
-            position = new Vector2(GameEnvironment.Random.Next(100, 500));
+            position.X = GameEnvironment.Random.Next(0, 1080);
+            position.Y = GameEnvironment.Random.Next(0, 920);
         }
     }
     

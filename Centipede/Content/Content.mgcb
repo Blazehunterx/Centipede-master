@@ -68,13 +68,6 @@
 /processorParam:TextureFormat=Compressed
 /build:GameFont.spritefont
 
-#begin GameFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:GameFont.spritefont
-
 #begin Pacman1 - Copy.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -362,6 +355,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:StartScreen.png
+
+#begin winScreen.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:winScreen.jpg
 
 #begin YellowGhost.png
 /importer:TextureImporter

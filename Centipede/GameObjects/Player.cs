@@ -11,9 +11,15 @@ using Microsoft.Xna.Framework.Input;
 namespace Pacman {
 	public class Player : SpriteGameObject {
 
-		int direction = 30;
-		public Player() : base("Pacman1") {
-			this.Origin = this.Center;
+		int direction = 5;
+		static SpriteSheet[] pacmanDirection = {new SpriteSheet ("PacmanDown1"),
+												new SpriteSheet ("PacmanLeft1"),
+												new SpriteSheet ("PacmanUp1"),
+												new SpriteSheet ("Pacman2")}; 
+		public Player() : base("") {
+			position.X = GameEnvironment.Screen.X / 2;
+			position.Y = GameEnvironment.Screen.Y / 2;
+			sprite = pacmanDirection[3];
 		}
 
 		
@@ -21,10 +27,24 @@ namespace Pacman {
 		public override void HandleInput(InputHelper inputHelper) {
 			base.HandleInput(inputHelper);
 
-			if (inputHelper.KeyPressed(Keys.Up)) position.Y -= direction;
-			if (inputHelper.KeyPressed(Keys.Down)) position.Y += direction;
-			if (inputHelper.KeyPressed(Keys.Left)) position.X -= direction;
-			if (inputHelper.KeyPressed(Keys.Right)) position.X += direction;
+			if (inputHelper.IsKeyDown(Keys.Up)) {
+				position.Y -= direction;
+					sprite = pacmanDirection[2]; }
+
+			if (inputHelper.IsKeyDown(Keys.Down)) {
+				position.Y += direction;
+				sprite = pacmanDirection[0];
+			}
+			
+			if (inputHelper.IsKeyDown(Keys.Left)) {
+				position.X -= direction;
+				sprite = pacmanDirection[1];
+			}
+			
+			if (inputHelper.IsKeyDown(Keys.Right)) {
+				position.X += direction;
+				sprite = pacmanDirection[3];
+			}
 		}
 
 		public override void Update(GameTime gameTime) {

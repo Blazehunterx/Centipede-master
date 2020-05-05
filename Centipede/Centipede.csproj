@@ -45,8 +45,8 @@
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\PacmanLife.cs" />
     <Compile Include="GameObjects\Score.cs" />
-    <Compile Include="GameObjects\Timer.cs" />
     <Compile Include="GameStates\StartState.cs" />
+    <Compile Include="GameStates\WinState.cs" />
     <Compile Include="Pacman.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
@@ -80,11 +80,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Arcade - Pac-Man - General Sprites.png" />
+    <Content Include="Content\BackGround.jpg" />
+    <Content Include="Content\BackGround2.0.png" />
+    <Content Include="Content\BlueGhost.png" />
+    <Content Include="Content\Dot.png" />
+    <Content Include="Content\Pacman1 - Copy.png" />
+    <Content Include="Content\Pacman1.png" />
+    <Content Include="Content\Pacman2.png" />
+    <Content Include="Content\Pacman3.png" />
+    <Content Include="Content\PacmanAnimation 1.png" />
+    <Content Include="Content\PacmanDown1.png" />
+    <Content Include="Content\PacmanDown2.png" />
+    <Content Include="Content\PacmanLeft1.png" />
+    <Content Include="Content\PacmanLeft2.png" />
+    <Content Include="Content\PacmanUp1.png" />
+    <Content Include="Content\PacmanUp2.png" />
+    <Content Include="Content\PlayingField.png" />
+    <Content Include="Content\Pointo.png" />
+    <Content Include="Content\PurpleGhost.png" />
+    <Content Include="Content\Red1.png" />
+    <Content Include="Content\Red2.png" />
+    <Content Include="Content\RedDown1.png" />
+    <Content Include="Content\RedDown2.png" />
+    <Content Include="Content\RedLeft1.png" />
+    <Content Include="Content\RedLeft2.png" />
+    <Content Include="Content\RedUp1.png" />
+    <Content Include="Content\RedUp2.png" />
+    <Content Include="Content\spr_gameover_screen.png" />
+    <Content Include="Content\StartScreen.png" />
+    <Content Include="Content\winScreen.jpg" />
+    <Content Include="Content\YellowGhost.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\GameFont.spritefont" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

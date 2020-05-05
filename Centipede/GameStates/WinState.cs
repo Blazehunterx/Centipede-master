@@ -5,9 +5,9 @@ using Pacman.GameStates;
 
 
 namespace Pacman.GameStates {
-    class GameOverState : SpriteGameObject {
+    class WinState : SpriteGameObject {
 
-        public GameOverState() : base("spr_gameover_screen") {
+        public WinState() : base("winScreen") {
 
         }
 
